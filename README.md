@@ -10,7 +10,7 @@ Downloading necessary data:
     - All datasets we use in this experiments can be found [here](https://drive.google.com/drive/folders/1KtabJmFvLSvPzyb-MsLuqY7BfWceUmZ8?usp=sharing)
     
 ### Training
-Download Mix Vision Transformer's pretrained [weights](https://drive.google.com/drive/folders/1b7bwrInTW4VLEm27YawHOAMSMikga2Ia) on ImageNet-1K, and put them in a folder `pretrained/`
+Download MiT's pretrained [weights](https://drive.google.com/drive/folders/1b7bwrInTW4VLEm27YawHOAMSMikga2Ia) on ImageNet-1K, and put them in a folder `pretrained/`.
 Config hyper-parameters and run `train.py` for training. For example:
 ```
 python train.py --backbone b3 --train_path ./data/TrainDataset --train_save ColonFormerB3
