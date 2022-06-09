@@ -1,6 +1,10 @@
 # ColonFormer: An Efficient Transformer based Method for Colon Polyp Segmentation
 This repository contains the official Pytorch implementation of training & evaluation code for ColonFormer.
 
+### Environment
+- Creating a virtual environment in terminal: `conda create -n PraNet python=3.6`
+- Install requirements: `pip install -r requirements.txt`
+
 ### Dataset
 Downloading necessary data:
 1. For `Experiment 1` in our paper: 

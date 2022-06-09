@@ -4,7 +4,6 @@ import os
 import random
 import sys
 import time
-import pandas as pd
 import numpy as np
 import cv2
 from tqdm import tqdm
@@ -16,7 +15,6 @@ import torch.nn as nn
 import torch.optim as optim
 
 from utils import clip_gradient, AvgMeter
-from collections import OrderedDict
 from torch.autograd import Variable
 from datetime import datetime
 import torch.nn.functional as F
@@ -188,11 +186,7 @@ def train(train_loader, model, optimizer, epoch, lr_scheduler, args):
     }
     torch.save(checkpoint, ckpt_path)
 
-    log = OrderedDict([
-        ('loss', loss_record.show()), ('dice', dice.show()), ('iou', iou.show()),
-    ])
-
-    return log
+    return
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -281,10 +275,4 @@ if __name__ == '__main__':
 
     print("#"*20, f"Start Training", "#"*20)
     for epoch in range(start_epoch, args.num_epochs+1):
-        train_log = train(train_loader, model, optimizer, epoch, lr_scheduler, args)
-
-        log_tmp = pd.Series([epoch, optimizer.param_groups[0]["lr"], 
-                train_log['loss'].item(), train_log['dice'].item(), train_log['iou'].item(),  
-        ], index=['epoch', 'lr', 'loss', 'dice', 'iou'])
-        log = log.append(log_tmp, ignore_index=True)
-        log.to_csv(f'snapshots/{train_save}/log.csv', index=False)
+        train(train_loader, model, optimizer, epoch, lr_scheduler, args)

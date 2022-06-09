@@ -4,12 +4,10 @@ import os
 import random
 import sys
 import time
-import pandas as pd
 import numpy as np
 import cv2
 from tqdm import tqdm
 from glob import glob
-import matplotlib.pyplot as plt
 import torch
 
 from mmseg import __version__
