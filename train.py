@@ -212,10 +212,6 @@ if __name__ == '__main__':
     else:
         print("Save path existed")
 
-
-    log = pd.DataFrame(index=[], columns=[
-        'epoch', 'lr', 'loss', 'dice', 'iou', 'val_loss', 'val_dice', 'val_iou'
-    ])
     train_img_paths = []
     train_mask_paths = []
     train_img_paths = glob('{}/images/*'.format(args.train_path))
