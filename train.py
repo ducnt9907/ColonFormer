@@ -146,7 +146,7 @@ def train(train_loader, model, optimizer, epoch, lr_scheduler, args):
             images = Variable(images).cuda()
             gts = Variable(gts).cuda()
             # ---- rescale ----
-            trainsize = int(round(trainsize_init*rate/32)*32)
+            trainsize = int(round(args.init_trainsize*rate/32)*32)
             images = F.upsample(images, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
             gts = F.upsample(gts, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
             # ---- forward ----
@@ -196,7 +196,7 @@ if __name__ == '__main__':
                         default=1e-4, help='learning rate')
     parser.add_argument('--batchsize', type=int,
                         default=8, help='training batch size')
-    parser.add_argument('--trainsize', type=int,
+    parser.add_argument('--init_trainsize', type=int,
                         default=352, help='training dataset size')
     parser.add_argument('--clip', type=float,
                         default=0.5, help='gradient clipping margin')
@@ -252,7 +252,7 @@ if __name__ == '__main__':
 
     # ---- flops and params ----
     params = model.parameters()
-    optimizer = torch.optim.Adam(params, args.nit_lr)
+    optimizer = torch.optim.Adam(params, args.init_lr)
     lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, 
                                         T_max=len(train_loader)*args.num_epochs,
                                         eta_min=args.init_lr/1000)
