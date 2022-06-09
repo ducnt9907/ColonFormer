@@ -2,7 +2,7 @@
 This repository contains the official Pytorch implementation of training & evaluation code for ColonFormer.
 
 ### Environment
-- Creating a virtual environment in terminal: `conda create -n PraNet python=3.6`
+- Creating a virtual environment in terminal: `conda create -n ColonFormer`
 - Install requirements: `pip install -r requirements.txt`
 
 ### Dataset
