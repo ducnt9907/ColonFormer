@@ -133,48 +133,51 @@ def train(train_loader, model, optimizer, epoch, lr_scheduler, args):
     size_rates = [0.75, 1, 1.25]
     loss_record = AvgMeter()
     dice, iou = AvgMeter(), AvgMeter()
-    for i, pack in enumerate(train_loader, start=1):
-        if epoch <= 1:
-                optimizer.param_groups[0]["lr"] = (epoch * i) / (1.0 * total_step) * args.init_lr
-        else:
-            lr_scheduler.step()
+    with torch.autograd.set_detect_anomaly(True):
+        for i, pack in enumerate(train_loader, start=1):
+            if epoch <= 1:
+                    optimizer.param_groups[0]["lr"] = (epoch * i) / (1.0 * total_step) * args.init_lr
+            else:
+                lr_scheduler.step()
 
-        for rate in size_rates: 
-            optimizer.zero_grad()
-            # ---- data prepare ----
-            images, gts = pack
-            images = Variable(images).cuda()
-            gts = Variable(gts).cuda()
-            # ---- rescale ----
-            trainsize = int(round(args.init_trainsize*rate/32)*32)
-            images = F.upsample(images, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
-            gts = F.upsample(gts, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
-            # ---- forward ----
-            map4, map3, map2, map1 = model(images)
-            map1 = F.upsample(map1, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
-            map2 = F.upsample(map2, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
-            map3 = F.upsample(map3, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
-            map4 = F.upsample(map4, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
-            loss = structure_loss(map1, gts) + structure_loss(map2, gts) + structure_loss(map3, gts) + structure_loss(map4, gts)
-            # ---- metrics ----
-            dice_score = dice_m(map4, gts)
-            iou_score = iou_m(map4, gts)
-            # ---- backward ----
-            loss.backward()
-            clip_gradient(optimizer, args.clip)
-            optimizer.step()
-            # ---- recording loss ----
-            if rate == 1:
-                loss_record.update(loss.data, args.batchsize)
-                dice.update(dice_score.data, args.batchsize)
-                iou.update(iou_score.data, args.batchsize)
+            for rate in size_rates: 
+                optimizer.zero_grad()
+                # ---- data prepare ----
+                images, gts = pack
+                images = Variable(images).cuda()
+                gts = Variable(gts).cuda()
+                # ---- rescale ----
+                trainsize = int(round(args.init_trainsize*rate/32)*32)
+                images = F.upsample(images, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
+                gts = F.upsample(gts, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
+                # ---- forward ----
+                map4, map3, map2, map1 = model(images)
+                map1 = F.upsample(map1, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
+                map2 = F.upsample(map2, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
+                map3 = F.upsample(map3, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
+                map4 = F.upsample(map4, size=(trainsize, trainsize), mode='bilinear', align_corners=True)
+                loss = structure_loss(map1, gts) + structure_loss(map2, gts) + structure_loss(map3, gts) + structure_loss(map4, gts)
+                # with torch.autograd.set_detect_anomaly(True):
+                #loss = nn.functional.binary_cross_entropy(map1, gts)
+                # ---- metrics ----
+                dice_score = dice_m(map4, gts)
+                iou_score = iou_m(map4, gts)
+                # ---- backward ----
+                loss.backward()
+                clip_gradient(optimizer, args.clip)
+                optimizer.step()
+                # ---- recording loss ----
+                if rate == 1:
+                    loss_record.update(loss.data, args.batchsize)
+                    dice.update(dice_score.data, args.batchsize)
+                    iou.update(iou_score.data, args.batchsize)
 
-        # ---- train visualization ----
-        if i == total_step:
-            print('{} Training Epoch [{:03d}/{:03d}], '
-                    '[loss: {:0.4f}, dice: {:0.4f}, iou: {:0.4f}]'.
-                    format(datetime.now(), epoch, num_epochs,\
-                            loss_record.show(), dice.show(), iou.show()))
+            # ---- train visualization ----
+            if i == total_step:
+                print('{} Training Epoch [{:03d}/{:03d}], '
+                        '[loss: {:0.4f}, dice: {:0.4f}, iou: {:0.4f}]'.
+                        format(datetime.now(), epoch, args.num_epochs,\
+                                loss_record.show(), dice.show(), iou.show()))
 
     ckpt_path = save_path + 'last.pth'
     print('[Saving Checkpoint:]', ckpt_path)
