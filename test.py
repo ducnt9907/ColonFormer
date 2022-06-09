@@ -88,7 +88,7 @@ def get_scores(gts, prs):
     mean_iou /= len(gts)
     mean_dice /= len(gts)        
     
-    print(f"scores: dice={mean_dice}, miou={mean_iou}, precision={mean_precision}, recall={mean_recall}")
+    print("scores: dice={}, miou={}, precision={}, recall={}".format(mean_dice, mean_iou, mean_precision, mean_recall))
 
     return (mean_iou, mean_dice, mean_precision, mean_recall)
 
@@ -98,9 +98,9 @@ def inference(model, args):
     print("#"*20)
     model.eval()
     
-    X_test = glob(f'{args.test_path}/images/*')
+    X_test = glob('{}/images/*'.format(args.test_path))
     X_test.sort()
-    y_test = glob(f'{args.test_path}/masks/*')
+    y_test = glob('{}/masks/*'.format(args.test_path)
     y_test.sort()
 
     test_dataset = Dataset(X_test, y_test)
@@ -140,7 +140,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     model = UNet(backbone=dict(
-                    type=f'mit_{args.backbone}',
+                    type='mit_{}'.format(args.backbone),
                     style='pytorch'), 
                 decode_head=dict(
                     type='UPerHead',
@@ -157,7 +157,7 @@ if __name__ == '__main__':
                 auxiliary_head=None,
                 train_cfg=dict(),
                 test_cfg=dict(mode='whole'),
-                pretrained=f'pretrained/mit_{args.backbone}.pth').cuda()
+                pretrained='pretrained/mit_{}.pth'.format(args.backbone)).cuda()
 
     if args.weight != '':
         checkpoint = torch.load(ckpt_path)

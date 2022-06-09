@@ -186,8 +186,6 @@ def train(train_loader, model, optimizer, epoch, lr_scheduler, args):
     }
     torch.save(checkpoint, ckpt_path)
 
-    return
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--num_epochs', type=int,
@@ -220,8 +218,8 @@ if __name__ == '__main__':
     ])
     train_img_paths = []
     train_mask_paths = []
-    train_img_paths = glob(f'{args.train_path}/images/*')
-    train_mask_paths = glob(f'{args.train_path}/masks/*')
+    train_img_paths = glob('{}/images/*'.format(args.train_path))
+    train_mask_paths = glob('{}/masks/*'.format(args.train_path))
     train_img_paths.sort()
     train_mask_paths.sort()
 
@@ -237,7 +235,7 @@ if __name__ == '__main__':
     total_step = len(train_loader)
 
     model = UNet(backbone=dict(
-                    type=f'mit_{args.backbone}',
+                    type='mit_{}'.format(args.backbone),
                     style='pytorch'), 
                 decode_head=dict(
                     type='UPerHead',
@@ -254,7 +252,7 @@ if __name__ == '__main__':
                 auxiliary_head=None,
                 train_cfg=dict(),
                 test_cfg=dict(mode='whole'),
-                pretrained=f'pretrained/mit_{args.backbone}.pth').cuda()
+                pretrained='pretrained/mit_{}.pth'.format(args.backbone)).cuda()
 
     # ---- flops and params ----
     params = model.parameters()
@@ -273,6 +271,6 @@ if __name__ == '__main__':
         lr_scheduler.load_state_dict(checkpoint['scheduler'])
         optimizer.load_state_dict(checkpoint['optimizer'])
 
-    print("#"*20, f"Start Training", "#"*20)
+    print("#"*20, "Start Training", "#"*20)
     for epoch in range(start_epoch, args.num_epochs+1):
         train(train_loader, model, optimizer, epoch, lr_scheduler, args)
