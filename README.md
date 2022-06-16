@@ -3,7 +3,8 @@ This repository contains the official Pytorch implementation of training & evalu
 
 ### Environment
 - Creating a virtual environment in terminal: `conda create -n ColonFormer`
-- Install requirements: `pip install -r requirements.txt`
+- Install `CUDA 11.1` and `pytorch 1.7.1`
+- Install other requirements: `pip install -r requirements.txt`
 
 ### Dataset
 Downloading necessary data:
