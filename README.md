@@ -20,6 +20,7 @@ Config hyper-parameters and run `train.py` for training. For example:
 ```
 python train.py --backbone b3 --train_path ./data/TrainDataset --train_save ColonFormerB3
 ```
+Here is an example in [Google Colab](https://colab.research.google.com/drive/1vUgh7XCiVyboYIAaRBQ2TDVMi8v0CLLK?usp=sharing)
 ### Evaluation
 For evaluation, specific your backbone version, weight's path and dataset and run `test.py`. For example:
 ```
