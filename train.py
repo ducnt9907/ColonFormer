@@ -207,6 +207,8 @@ if __name__ == '__main__':
                         default='./data/TrainDataset', help='path to train dataset')
     parser.add_argument('--train_save', type=str,
                         default='ConlonFormerB3')
+    parser.add_argument('--resume_path', type=str, help='path to checkpoint for resume training'
+                        default='')
     args = parser.parse_args()
 
     save_path = 'snapshots/{}/'.format(args.train_save)
@@ -261,10 +263,8 @@ if __name__ == '__main__':
                                         eta_min=args.init_lr/1000)
 
     start_epoch = 1
-    ckpt_path = ''
-    if ckpt_path != '':
-        log = pd.read_csv(ckpt_path.replace('last.pth', 'log.csv'))
-        checkpoint = torch.load(ckpt_path)
+    if args.resume_path != '':
+        checkpoint = torch.load(args.resume_path)
         start_epoch = checkpoint['epoch']
         model.load_state_dict(checkpoint['state_dict'])
         lr_scheduler.load_state_dict(checkpoint['scheduler'])
