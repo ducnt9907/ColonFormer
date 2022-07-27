@@ -12,7 +12,7 @@ Downloading necessary data:
     - Download testing dataset and move it into `./data/TestDataset/`, which can be found in this [download link (Google Drive)](https://drive.google.com/file/d/1o8OfBvYE6K-EpDyvzsmMPndnUMwb540R/view).
     - Download training dataset and move it into `./data/TrainDataset/`, which can be found in this [download link (Google Drive)](https://drive.google.com/file/d/1lODorfB33jbd-im-qrtUgWnZXxB94F55/view).
 2. For `Experiment 2` and `Experiment 3`:
-    - All datasets we use in this experiments can be found [here](https://drive.google.com/drive/folders/1KtabJmFvLSvPzyb-MsLuqY7BfWceUmZ8?usp=sharing)
+    - All datasets we use in this experiments can be found in this [download link (Google Drive)](https://drive.google.com/drive/folders/1KtabJmFvLSvPzyb-MsLuqY7BfWceUmZ8?usp=sharing)
     
 ### Training
 Download MiT's pretrained [weights](https://drive.google.com/drive/folders/1b7bwrInTW4VLEm27YawHOAMSMikga2Ia) on ImageNet-1K, and put them in a folder `pretrained/`.
@@ -26,3 +26,4 @@ For evaluation, specific your backbone version, weight's path and dataset and ru
 ```
 python test.py --backbone b3 --weight ./snapshots/ColonFormerB3/last.pth --test_path ./data/TestDataset
 ```
+We provide some [pretrained weights](https://drive.google.com/drive/folders/1-6EZ_c4a6I2opeGURwX26wWdf9dZCp3t?usp=sharing) in case you need.
