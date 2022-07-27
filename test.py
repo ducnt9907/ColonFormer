@@ -163,4 +163,6 @@ if __name__ == '__main__':
         checkpoint = torch.load(ckpt_path)
         model.load_state_dict(checkpoint['state_dict'])
 
+    inference(model, args)
+
 
