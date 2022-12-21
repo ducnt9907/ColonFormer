@@ -12,7 +12,7 @@ Downloading necessary data:
     - Download testing dataset and move it into `./data/TestDataset/`, which can be found in this [download link (Google Drive)](https://drive.google.com/file/d/1o8OfBvYE6K-EpDyvzsmMPndnUMwb540R/view).
     - Download training dataset and move it into `./data/TrainDataset/`, which can be found in this [download link (Google Drive)](https://drive.google.com/file/d/1lODorfB33jbd-im-qrtUgWnZXxB94F55/view).
 2. For `Experiment 2` and `Experiment 3`:
-    - All datasets we use in this experiments can be found in this [download link (Google Drive)](https://drive.google.com/file/d/1zC0Mv-K0htSzFGVLmuARAulWCnVxqOAo/view?usp=sharing)
+    - All datasets we use in this experiments can be found in this [download link (Google Drive)](https://drive.google.com/file/d/1ExJeVqbcBn6yy-gdGqEYw5phJywHIUXZ/view?usp=sharing)
     
 ### Training
 Download MiT's pretrained [weights](https://drive.google.com/drive/folders/1b7bwrInTW4VLEm27YawHOAMSMikga2Ia) on ImageNet-1K, and put them in a folder `pretrained/`.
