@@ -26,4 +26,4 @@ For evaluation, specific your backbone version, weight's path and dataset and ru
 ```
 python test.py --backbone b3 --weight ./snapshots/ColonFormerB3/last.pth --test_path ./data/TestDataset
 ```
-We provide some [pretrained weights](https://drive.google.com/drive/folders/1-6EZ_c4a6I2opeGURwX26wWdf9dZCp3t?usp=sharing) in case you need.
+We provide some [pretrained weights](https://drive.google.com/drive/folders/1SVxluPlRVohkN6Q6hG-FpA9L8eapZuxa?usp=sharing) in case you need.
