@@ -31,3 +31,34 @@ For evaluation, specific your backbone version, weight's path and dataset and ru
 python test.py --backbone b3 --weight ./snapshots/ColonFormerB3/last.pth --test_path ./data/TestDataset
 ```
 We provide some [pretrained weights](https://drive.google.com/drive/folders/1SVxluPlRVohkN6Q6hG-FpA9L8eapZuxa?usp=sharing) in case you need.
+
+### Citation
+If you find this code useful in your research, please consider citing:
+@article{duc2022colonformer,
+  title={Colonformer: An efficient transformer based method for colon polyp segmentation},
+  author={Duc, Nguyen Thanh and Oanh, Nguyen Thi and Thuy, Nguyen Thi and Triet, Tran Minh and Dinh, Viet Sang},
+  journal={IEEE Access},
+  volume={10},
+  pages={80575--80586},
+  year={2022},
+  publisher={IEEE}
+}
+
+@inproceedings{ngoc2021neounet,
+  title={NeoUNet: Towards accurate colon polyp segmentation and neoplasm detection},
+  author={Ngoc Lan, Phan and An, Nguyen Sy and Hang, Dao Viet and Long, Dao Van and Trung, Tran Quang and Thuy, Nguyen Thi and Sang, Dinh Viet},
+  booktitle={Advances in Visual Computing: 16th International Symposium, ISVC 2021, Virtual Event, October 4-6, 2021, Proceedings, Part II},
+  pages={15--28},
+  year={2021},
+  organization={Springer}
+}
+
+@article{thuan2023rabit,
+  title={RaBiT: An Efficient Transformer using Bidirectional Feature Pyramid Network with Reverse Attention for Colon Polyp Segmentation},
+  author={Thuan, Nguyen Hoang and Oanh, Nguyen Thi and Thuy, Nguyen Thi and Perry, Stuart and Sang, Dinh Viet},
+  journal={arXiv preprint arXiv:2307.06420},
+  year={2023}
+}
+
+
+
