@@ -34,7 +34,8 @@ We provide some [pretrained weights](https://drive.google.com/drive/folders/1SVx
 
 ### Citation
 If you find this code useful in your research, please consider citing:
-<code>
+
+``
 @article{duc2022colonformer,
   title={Colonformer: An efficient transformer based method for colon polyp segmentation},
   author={Duc, Nguyen Thanh and Oanh, Nguyen Thi and Thuy, Nguyen Thi and Triet, Tran Minh and Dinh, Viet Sang},
@@ -44,8 +45,7 @@ If you find this code useful in your research, please consider citing:
   year={2022},
   publisher={IEEE}
 }
-</code>
-
+``
 <code>
 @inproceedings{ngoc2021neounet,
   title={NeoUNet: Towards accurate colon polyp segmentation and neoplasm detection},
@@ -56,7 +56,6 @@ If you find this code useful in your research, please consider citing:
   organization={Springer}
 }
 </code>
-
 <code>
 @article{thuan2023rabit,
   title={RaBiT: An Efficient Transformer using Bidirectional Feature Pyramid Network with Reverse Attention for Colon Polyp Segmentation},
