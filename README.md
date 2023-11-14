@@ -15,7 +15,11 @@ Downloading necessary data:
     - All datasets we use in this experiments can be found in this [download link (Google Drive)](https://drive.google.com/file/d/1ExJeVqbcBn6yy-gdGqEYw5phJywHIUXZ/view?usp=sharing)
     
 ### Training
-Download MiT's pretrained [weights](https://drive.google.com/drive/folders/1b7bwrInTW4VLEm27YawHOAMSMikga2Ia) on ImageNet-1K, and put them in a folder `pretrained/`.
+Download MiT's pretrained `weights` 
+(
+[google drive](https://drive.google.com/drive/folders/1b7bwrInTW4VLEm27YawHOAMSMikga2Ia?usp=sharing) | 
+[onedrive](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/xieenze_connect_hku_hk/EvOn3l1WyM5JpnMQFSEO5b8B7vrHw9kDaJGII-3N9KNhrg?e=cpydzZ)
+) on ImageNet-1K, and put them in a folder `pretrained/`.
 Config hyper-parameters and run `train.py` for training. For example:
 ```
 python train.py --backbone b3 --train_path ./data/TrainDataset --train_save ColonFormerB3
